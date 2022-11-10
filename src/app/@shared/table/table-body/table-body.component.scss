@@ -1,0 +1,14 @@
+.table-body {
+  display: grid;
+  width: 100%;
+  & > div {
+    padding: 0 0.6rem;
+  }
+}
+
+.table-row {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.95);
+  }
+}
