@@ -216,10 +216,6 @@ button {
 
 .border-right {
   border-right: 1px solid $gray-2 !important;
-
-  @include mq('phone-wide', max) {
-    border-right: 0 !important;
-  }
 }
 
 .input-fill {
@@ -278,13 +274,9 @@ button {
   }
 
   &.p-calendar {
-    width: 360px;
-    max-width: none;
-
     input {
       border-radius: 7px;
       border: 0.5px solid #c2cfe0 !important;
-      width: 100%;
     }
   }
 
@@ -607,7 +599,6 @@ input {
   border-top: 0px;
 }
 
-
 .p-inputswitch-checked .p-inputswitch-slider {
   background: $secondary-color !important;
 }
@@ -616,4 +607,24 @@ input {
   outline: 0 none;
   outline-offset: 0;
   box-shadow: 0 0 0 0.2rem #ffae93 !important;
+}
+
+.p-overlaypanel {
+  max-width: 90vw;
+}
+
+#filter-dialog {
+  .p-dialog {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .p-dialog .p-dialog-content {
+    height: 100% !important;
+  }
+}
+
+.p-datepicker-mask {
+  display: none;
 }

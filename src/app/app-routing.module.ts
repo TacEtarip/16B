@@ -1,15 +1,27 @@
-import { ExampleComponent } from './components/example/example.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AssignedAgmarComponent } from './components/assigned-agmar/assigned-agmar.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {
-    path: 'example',
-    component: ExampleComponent,
+    path: 'plan',
+    component: MainComponent,
+    children: [
+      {
+        path: 'assigned-agmar',
+        component: AssignedAgmarComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'assigned-agmar',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    redirectTo: 'example',
+    redirectTo: 'plan',
     pathMatch: 'full',
   },
 ];

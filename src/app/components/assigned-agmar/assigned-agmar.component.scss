@@ -1,0 +1,58 @@
+.assignment {
+  & > * {
+    margin-bottom: 42px;
+  }
+
+  &-action {
+    .external-filter {
+      width: 250px;
+    }
+    display: flex;
+    gap: 18px;
+    .separator {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+@media (max-width: '1000px') {
+  .assignment {
+    &-action {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      .separator {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: '780px') {
+  .assignment {
+    &-action {
+      .external-filter {
+        width: 100%;
+        grid-column: span 2;
+      }
+
+      #btn-excel-ota,
+      #btn-filtrar-ota {
+        width: 100% !important;
+      }
+
+      #btn-search-ota {
+        width: 100% !important;
+        grid-column: span 2;
+      }
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      .separator {
+        display: none;
+      }
+    }
+  }
+}
