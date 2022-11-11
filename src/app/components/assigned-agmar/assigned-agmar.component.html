@@ -23,12 +23,6 @@
         [(value)]="serviceFilter"
       ></app-auto-complete-filter>
     </div>
-    <button
-      id="btn-search-ota"
-      class="btn btn-primary p-button w-6rem"
-      pButton
-      label="Buscar"
-    ></button>
     <span class="separator"></span>
     <button
       id="btn-excel-ota"
@@ -48,8 +42,8 @@
     </button>
   </section>
   <section class="assignment-table">
-    <div [ngStyle]="{ 'max-height': '480px' }" class="overflow-auto">
-      <div [ngStyle]="{ 'min-width': '1200px' }">
+    <div class="overflow-auto">
+      <div>
         <app-table-header [header]="otHeaders">
           <ng-template let-row key="landfall" appTable>
             {{ row.name }}
@@ -80,6 +74,7 @@
           </ng-template>
         </app-table-header>
         <app-table-body
+          [actionProperty]="'accion'"
           [loading]="loadingTableData"
           [list]="otAssignmentList"
           [header]="otHeaders"
@@ -96,10 +91,10 @@
           <ng-template let-element let-row="row" key="service" appTable
             >{{ element }}
             <em
-              [ngStyle]="{ cursor: 'pointer' }"
+              [ngStyle]="{ cursor: 'pointer', color: '#ff6a35' }"
               (click)="openOtMessage(row)"
               *ngIf="row.message"
-              class="ml-1 pi pi-envelope"
+              class="ml-2 pi pi-envelope"
             ></em
           ></ng-template>
           <ng-template let-element key="numberOt" appTable>{{
@@ -116,10 +111,28 @@
           <ng-template let-element key="numberOs" appTable>{{
             element
           }}</ng-template>
-          <ng-template let-element key="accion" appTable
-            ><button (click)="stopPropagation($event)" class="btn btn-light">
-              <ico-more class="ico-secondary"></ico-more></button
-          ></ng-template>
+          <ng-template let-element let-row="row" key="accion" appTable>
+            <div>
+              <button
+                (click)="tableSubMenu.toggle($event)"
+                class="btn btn-light"
+              >
+                <ico-more class="ico-secondary"> </ico-more>
+              </button>
+              <p-overlayPanel
+                #tableSubMenu
+                styleClass="btn-menu-container"
+                [style]="{ width: '90px', padding: '0px' }"
+              >
+                <ng-template pTemplate>
+                  <div (click)="openOtReview(row)" class="tpp-menu-btn">
+                    <em class="pi pi-eye"></em>
+                    <h6>Revisar Asignación</h6>
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+            </div></ng-template
+          >
         </app-table-body>
       </div>
     </div>
@@ -199,5 +212,45 @@
       label="Cerrar"
     ></button>
     <button class="btn btn-secondary btn-md" pButton label="Aplicar"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  *ngIf="assignedOtToReview"
+  [header]="'Nro OT: ' + assignedOtToReview.numberOt"
+  [(visible)]="displayAssignedOtToReview"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '780px': '300px' }"
+>
+  <div class="ot-review-container">
+    <h5><span>Recalada:</span> {{ assignedOtToReview.landfall }}</h5>
+    <h5><span>Servicio:</span> {{ assignedOtToReview.service }}</h5>
+    <h5><span>Localidad:</span> {{ assignedOtToReview.locality }}</h5>
+    <textarea
+      #obsArea
+      [ngStyle]="{ height: '102px', resize: 'none' }"
+      placeholder="En caso de observar, ingrese un motivo"
+      maxlength="150"
+      [textArea]="true"
+      tppInput
+    ></textarea>
+    <span>{{ getTextAreaLengthInput(obsArea.value.length) }}/150</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      (click)="closeOtReview()"
+      label="Aceptar"
+      pButton
+      class="btn btn-secondary"
+    ></button>
+    <button
+      (click)="closeOtReview()"
+      label="Observar"
+      pButton
+      class="btn btn-primary"
+    ></button>
   </ng-template>
 </p-dialog>

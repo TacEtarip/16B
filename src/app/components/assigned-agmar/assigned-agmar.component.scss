@@ -1,3 +1,5 @@
+@import '../../../scss/01-elements/variables';
+
 .assignment {
   & > * {
     margin-bottom: 42px;
@@ -13,24 +15,71 @@
       flex: 1 1 auto;
     }
   }
+
+  &-table {
+    & > div {
+      max-height: 480px;
+      & > div {
+        min-width: 1200px;
+      }
+    }
+  }
+}
+
+.ot-review-container {
+  & > span {
+    position: relative;
+    top: -36px;
+    left: 310px;
+    color: $gray-2;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+  }
+  h5 {
+    margin-bottom: 9px;
+  }
+  h5 span {
+    color: $blue;
+    font-weight: bold;
+  }
 }
 
 @media (max-width: '1000px') {
   .assignment {
     &-action {
-      display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 18px;
       .separator {
-        display: none;
+        // display: none;
+        width: 100%;
       }
     }
   }
 }
 
 @media (max-width: '780px') {
+  .ot-review-container {
+    & > span {
+      top: -36px;
+      left: 210px;
+    }
+  }
+
   .assignment {
+    &-table {
+      & > div {
+        max-height: none;
+        & > div {
+          min-width: auto;
+          width: 100%;
+        }
+      }
+    }
+
     &-action {
       .external-filter {
         width: 100%;

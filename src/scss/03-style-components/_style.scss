@@ -36,3 +36,21 @@
     }
   }
 }
+
+.tpp-menu-btn {
+  &:hover {
+    background-color: $background;
+  }
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  align-items: center;
+  border: solid 2px $background;
+  background-color: $white;
+  cursor: pointer;
+  h6 {
+    font-size: 9px;
+    font-weight: bold;
+    margin: 0;
+  }
+}

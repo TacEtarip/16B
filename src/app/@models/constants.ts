@@ -166,6 +166,24 @@ export const OT_HEADER_LIST: ITableHeader[] = [
   },
 ];
 
+export const OT_ASSIGNMENT_STATES = [
+  {
+    name: 'Asignado',
+    value: 74,
+    color: '#f2bc00',
+  },
+  {
+    name: 'Asignación aceptada',
+    value: 80,
+    color: '#f2bc00',
+  },
+  {
+    name: 'Asignación observada',
+    value: 76,
+    color: '#f2bc00',
+  },
+];
+
 export const OT_STATES = [
   {
     name: 'Por asignar',

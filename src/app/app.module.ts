@@ -15,15 +15,22 @@ import { ErrorInterceptor } from '@shared/interceptors/error.interceptor';
 import { BlockUIModule } from 'ng-block-ui';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { MenuModule } from 'primeng/menu';
 import { AssignedAgmarComponent } from './components/assigned-agmar/assigned-agmar.component';
+import { FiltersComponent } from './components/filters/filters.component';
 import { MainComponent } from './components/main/main.component';
 import { MessageModalComponent } from './components/message-modal/message-modal.component';
-import { FiltersComponent } from './components/filters/filters.component';
 
 registerLocaleData(localeEs);
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, AssignedAgmarComponent, MessageModalComponent, FiltersComponent],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    AssignedAgmarComponent,
+    MessageModalComponent,
+    FiltersComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,6 +38,7 @@ registerLocaleData(localeEs);
     InternalSharedModule,
     PrimeModule,
     DialogModule,
+    MenuModule,
     BlockUIModule.forRoot(),
     DynamicDialogModule,
     TppLibRefreshModule.forRoot({ url: environment.credentialsEndpoint }),

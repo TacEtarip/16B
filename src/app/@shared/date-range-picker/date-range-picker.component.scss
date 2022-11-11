@@ -1,5 +1,19 @@
 .date-range-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.5rem;
+
+  & > div {
+    label {
+      width: 100%;
+    }
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: '780px') {
+  .date-range-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
