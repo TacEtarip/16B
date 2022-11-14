@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FILTERS_OT_LIST, OT_ASSIGNMENT_STATES } from '@models/constants';
 import { ICheckboxFiler } from '@models/interfaces/ICheckboxFiler';
 import { IMaster } from '@models/interfaces/IMaster';
@@ -13,6 +13,9 @@ export class FiltersComponent implements OnInit {
   showMenu = ShowMenuFunction;
   listaFiltro = FILTERS_OT_LIST;
   otStates = OT_ASSIGNMENT_STATES;
+
+  @Output()
+  currentMenuOnDisplay = new EventEmitter<string>();
 
   // * Filter zone
   landfallFilter: IMaster & { disabled: false };

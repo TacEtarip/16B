@@ -26,17 +26,17 @@ export class DateRangePickerComponent implements OnInit {
   maxDateTo: Date | null = null;
   getScreenWidth: number;
 
-  touchUI = false;
+  mobile = false;
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
-    this.touchUI = this.getScreenWidth < 780;
+    this.mobile = this.getScreenWidth < 780;
   }
 
   ngOnInit(): void {
     this.getScreenWidth = window.innerWidth;
-    this.touchUI = this.getScreenWidth < 780;
+    this.mobile = this.getScreenWidth < 780;
 
     if (this.fromDate === undefined) {
       return;

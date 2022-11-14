@@ -8,7 +8,7 @@
           [ngClass]="{
             active: menu.tipo == 'landfall'
           }"
-          (click)="showMenu(menu.tipo)"
+          (click)="showMenu(menu.tipo); currentMenuOnDisplay.emit(menu.tipo)"
           [disabled]="false"
         >
           {{ menu.name }}

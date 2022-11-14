@@ -41,8 +41,6 @@ import { ITableHeader } from '@models/interfaces/ITableHeader';
           'border-bottom-left-radius': 8,
         })
       ),
-      transition('open => closed', [animate('0.25s')]),
-      transition('closed => open', [animate('0.25s')]),
     ]),
     trigger('rotateExpandBtn', [
       state(

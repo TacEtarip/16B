@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FILTERS_OT_LIST, OT_HEADER_LIST } from '@models/constants';
 import { IAssignedWorkOrder } from '@models/interfaces/IAssignedWorkOrder';
 import { IMaster } from '@models/interfaces/IMaster';
@@ -20,6 +26,8 @@ export class AssignedAgmarComponent implements OnInit {
   displayAssignedOtToReview = false;
   displayFiltersModal = false;
 
+  currentMenuOnDisplay = '';
+
   showMenu = ShowMenuFunction;
 
   listaFiltro = FILTERS_OT_LIST;
@@ -36,6 +44,8 @@ export class AssignedAgmarComponent implements OnInit {
   tableMenuItems: MenuItem[];
 
   otAssignmentList: IAssignedWorkOrder[] = [];
+
+  isWidthLessThanOneThousand = false;
 
   constructor(
     private woAssignment: WoAssignmentService,
@@ -83,6 +93,7 @@ export class AssignedAgmarComponent implements OnInit {
       this.displayFiltersModal = true;
       return;
     }
+    this.isWidthLessThanOneThousand = window.innerWidth <= 1000;
     filterOverlayPanel.toggle(event);
   }
 
@@ -96,5 +107,18 @@ export class AssignedAgmarComponent implements OnInit {
     }
 
     return `${length}`;
+  }
+
+  getStyleClassFilter() {
+    if (this.isWidthLessThanOneThousand) {
+      return 'default-filter-overlay';
+    }
+    if (
+      this.currentMenuOnDisplay === 'eta' ||
+      this.currentMenuOnDisplay === 'scheduledDate'
+    ) {
+      return 'calendar-filter';
+    }
+    return 'regular-filter';
   }
 }

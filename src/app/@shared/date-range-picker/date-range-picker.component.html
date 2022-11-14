@@ -1,18 +1,19 @@
 <div class="date-range-container">
   <div>
-    <label for="basic">Desde</label>
+    <label *ngIf="mobile" for="basic">Desde</label>
     <p-calendar
       styleClass="calendar"
       panelStyleClass="calendar-panel"
       [(ngModel)]="fromDate"
       dateFormat="yy-mm-dd"
       (onSelect)="selectDateFrom($event)"
-      [touchUI]="touchUI"
+      [touchUI]="mobile"
+      [inline]="!mobile"
     >
     </p-calendar>
   </div>
   <div>
-    <label for="basic">Hasta</label>
+    <label *ngIf="mobile" for="basic">Hasta</label>
     <p-calendar
       [disabled]="fromDate == null"
       [minDate]="minDateTo"
@@ -22,7 +23,8 @@
       [(ngModel)]="toDate"
       dateFormat="yy-mm-dd"
       (onSelect)="selectDateTo($event)"
-      [touchUI]="touchUI"
+      [touchUI]="mobile"
+      [inline]="!mobile"
     >
     </p-calendar>
   </div>

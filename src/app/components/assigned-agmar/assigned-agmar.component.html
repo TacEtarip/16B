@@ -31,7 +31,13 @@
       pButton
       label="Descargar en Excel"
     ></button>
+    <div
+      #filterOL
+      class="filter-overlay"
+      [ngStyle]="{ position: 'relative' }"
+    ></div>
     <button
+      #filter
       id="btn-filtrar-ota"
       class="btn btn-primary p-button w-14rem"
       pButton
@@ -165,13 +171,19 @@
     ></button>
   </ng-template>
 </p-dialog>
-
-<p-overlayPanel #filtersPanel>
+<p-overlayPanel
+  [appendTo]="isWidthLessThanOneThousand ? 'body' : filterOL"
+  (onHide)="currentMenuOnDisplay = 'landfall'"
+  #filtersPanel
+  [styleClass]="getStyleClassFilter()"
+>
   <ng-template pTemplate>
     <div>
       <div class="filter">
         <div>
-          <app-filters></app-filters>
+          <app-filters
+            (currentMenuOnDisplay)="currentMenuOnDisplay = $event"
+          ></app-filters>
           <div class="col-lg-12 text-right mt-2 mb-4">
             <button
               (click)="filtersPanel.hide()"
