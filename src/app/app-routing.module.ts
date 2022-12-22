@@ -5,23 +5,27 @@ import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {
-    path: 'plan',
+    path: 'ordenesServicio',
     component: MainComponent,
     children: [
       {
-        path: 'assigned-agmar',
+        path: 'planoperagmar',
+        component: AssignedAgmarComponent,
+      },
+      {
+        path: 'visorasigagmar/:token/:refreshToken/:userId',
         component: AssignedAgmarComponent,
       },
       {
         path: '',
-        redirectTo: 'assigned-agmar',
+        redirectTo: 'visorasigagmar',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: 'plan',
+    redirectTo: 'ordenesServicio',
     pathMatch: 'full',
   },
 ];
